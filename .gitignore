@@ -1,0 +1,5 @@
+.idea
+__pycache__/
+Pandas_Cheat_Sheet.pdf
+*.csv
+data
