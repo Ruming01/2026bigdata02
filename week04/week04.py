@@ -11,4 +11,5 @@ df1 = pd.read_csv('German_credit.csv')
 ages = [10, 20, 30, 40, 50, 60, 70, 80]
 # print(pd.cut(df1['Age'], bins=ages))  # 초과 ~ 이하, right=True
 # print(pd.cut(df1['Age'], bins=ages, right=False))  # 이상 ~ 미만
-print(pd.cut(df1['Age'], bins=ages, right=False).reset_index().groupby('Age').count())
+
+print(pd.qcut(df1['Age'], q=3).reset_index().groupby('Age').count())
