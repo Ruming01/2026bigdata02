@@ -6,4 +6,21 @@ df['date'] = pd.to_datetime(df['date'])
 # print(df.info())
 # print(df['inspection_step'].value_counts())
 
-print(df[df['date'] == '2022-01-01'])
+# print(df[df['date'] == '2022-01-01'])
+# print(df.groupby('inspection_step')['value'].mean())
+# print(df.groupby('inspection_step')['value'].describe())
+
+
+df['normalized1'] = df.groupby('inspection_step')['value'].transform(lambda x: (x - x.mean())/x.std())
+# print(df['normalized1'])
+temp = df.sort_values(['inspection_step','date']).drop_duplicates('inspection_step')
+# print(temp)
+temp = temp.set_index('inspection_step')['value']
+# print(temp)
+
+df = df.set_index('inspection_step')
+print(df)
+
+df['normalized2'] = df['value'] - temp
+df = df.reset_index()
+print(df)
