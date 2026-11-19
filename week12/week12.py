@@ -1,10 +1,19 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
-from scipy.stats import linregress
-import plotly.express as px
-import statsmodels.api as sm
+import pandas as pd
 
-df1 = sns.load_dataset('tips')
+df = pd.read_csv('global_internet_users.csv')
+entities = ['South Korea', 'United Kingdom', 'Finland']
+df = df.loc[df['Entity'].isin(entities)]
 
-fig = px.scatter(data_frame=df1, x='total_bill', y='tip', width=500, height=400, trendline='ols', color='smoker')
-fig.show()
+fig, ax = plt.subplots()
+sns.lineplot(
+    x='Year', y='No. of Internet Users',
+    data=df, ax=ax, hue='Entity'
+)
+sns.scatterplot(
+    x='Year', y='No. of Internet Users',
+    data=df, ax=ax, hue='Entity', legend=False
+)
+
+plt.show()
