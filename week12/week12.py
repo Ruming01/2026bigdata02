@@ -2,15 +2,22 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import plotly.express as px
+import numpy as np
 
 df1 = sns.load_dataset('tips')
 
-#review week7
-# s: slope, i: intercept, r: correlation
-# s, i, r, _, _ = linregress(df1['MILES*'], df1['DURATION*'])  # x축은 운행거리, y축은 운행시간
-# print(s, i, r)  # 기울기, 절편, 상관계수(-1~1) 출력. 강한 양의 상관관계.
+
+x = np.arange(-2, 10, 1)
+y = x**3 - 9*x**2 + x + 4
+# y = 9*x**2 + x + 4
 
 fig, ax = plt.subplots()
-sns.regplot(x='total_bill', y='tip', data=df1, ax=ax)
+# sns.regplot(x=x, y=y, ax=ax, order=3)
+
+sns.regplot(
+    x=x, y=y, ax=ax, order=3,
+    scatter_kws={'s':50}, line_kws={'color':'blue', 'linestyle':'--'}
+)
+
 
 plt.show()
