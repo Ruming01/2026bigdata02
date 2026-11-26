@@ -1,12 +1,12 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import plotly.express as px
 
 df = sns.load_dataset("tips")
 
-fig, ax = plt.subplots()
-# sns.histplot(df, x='total_bill', ax=ax, bins=8, binwidth=6W) # 계급구간 8
-# sns.histplot(df, x='total_bill', ax=ax, hue='time')
-sns.histplot(df, x='total_bill', ax=ax, hue='time', multiple='stack')
+# fig = px.histogram(data_frame=df, x='total_bill', width=450)
+# fig = px.histogram(data_frame=df, x='total_bill', width=550, nbins=20)
+fig = px.histogram(data_frame=df, x='total_bill', width=550, color='time', barmode='overlay')
+fig.show()
 
-plt.show()
